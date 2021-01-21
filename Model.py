@@ -22,6 +22,7 @@ class Network(nn.Module):
         self.hidden_layers.extend([nn.Linear(l[i], l[i+1]) for i in range(len(l)-1)])
         self.dropout = nn.Dropout(dropout)
         self.activation = nn.ReLU()
+        self.output = nn.LogSoftmax(dim=1)
 
     def forward(self, network_input):
 
@@ -29,8 +30,9 @@ class Network(nn.Module):
             network_input = layer(network_input)
             network_input = self.activation(network_input)
             network_input = self.dropout(network_input)
-        network_input = self.hidden_layers(network_input)
-        return nn.LogSoftmax(network_input, dim = 1)
+        output_layer = self.hidden_layers[-1]
+        network_input = output_layer(network_input)
+        return self.output(network_input)
 def Extend(model1, model2):
     
     for layer in model1.parameters():
@@ -116,10 +118,10 @@ def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device =
 
             # Print the parameters to keep yourself updated
             print("Epoch {}/{} ===".format(e+1, epochs), 
-              "Training loss: {:.3f} ===".format(training_loss/len(train_data)), 
-              "Validation loss: {:.3f} ===".format(validation_loss/len(valid_data)), 
-              "Validation accuracy: {:.3f}% ===".format(validation_accuracy*100/len(valid_data)),
-              'Time consumed: {:.0f} seconds'.format(end-start))
+                "Training loss: {:.3f} ===".format(training_loss/len(train_data)), 
+                "Validation loss: {:.3f} ===".format(validation_loss/len(valid_data)), 
+                "Validation accuracy: {:.3f}% ===".format(validation_accuracy*100/len(valid_data)),
+                'Time consumed: {:.0f} seconds'.format(end-start))
 
 
 
