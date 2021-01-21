@@ -22,7 +22,7 @@ class Network(nn.Module):
         self.hidden_layers.extend([nn.Linear(l[i], l[i+1]) for i in range(len(l)-1)])
         self.dropout = nn.Dropout(dropout)
         self.activation = nn.ReLU()
-        print(len(self.hidden_layers))
+
     def forward(self, network_input):
 
         for layer in self.hidden_layers[:-1]:
