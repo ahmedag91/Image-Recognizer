@@ -83,4 +83,4 @@ trained_model.class_to_idx = train_data.class_to_idx
 params_dict = {'model_state_dict': trained_model.state_dict(),
               'model': trained_model
              }
-torch.save(params_dict, 'my_model.pth')
+torch.save(params_dict, args.save_checkpoint+'my_model.pth')
