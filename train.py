@@ -34,14 +34,9 @@ parser.add_argument('--gpu', action = 'store_true', help = 'Specifiy whether you
 parser.add_argument('--dropout', metavar = '', type = float, default = 0.2, help = 'Specify the dropout rate that will be used for the fully connected layers, which you will specify their dimensions. The default value is 0.2')
 
 args = parser.parse_args()
-print(args)
-
 
 # Load the training and validation datasets
 train_data, valid_data, _ = data_loader.load_image_dataset(args.data_dir)
-
-print(args.arch)
-
 
 # Load the model architecture based on the inputs. If 
 if args.arch =='vgg16':
@@ -55,24 +50,24 @@ else:
     loaded_model = torchvision.models.vgg16(pretrained=True)
 
 # Display the model architecture
-print('Here is the model architecture')
-print(loaded_model)
+print('Here is the model architecture', loaded_model)
 
 # Define the fully connected (classifier) model and print it
 model = Model.Network(hidden_layers=args.hidden_layers, dropout=args.dropout)
-print('Here is the model to be attached')
-print(model)
+print('Here is the model to be attached\n', model)
 
 # Remove the classifier of the loaded network, freeze its conv layers, and add the new classifier defined above
 model = Model.Extend(loaded_model, model)
-print('Here is the new model')
-print(model)
+print('Here is the new model\n', model)
 
 #Now it is time for training the new model
 if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
+    model.cuda()
 else:
     device = torch.device('cpu')
+    model.cpu()
+print('{} is in use.'.format(device))
 trained_model = Model.train_model(model = model, 
                             train_data = train_data, 
                             valid_data = valid_data, 
