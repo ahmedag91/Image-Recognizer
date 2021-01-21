@@ -61,7 +61,7 @@ def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device =
                 labels = labels.to(device)
 
                 # reset the gradient to zero for prevention from accumulation
-                optimizer.zer_grad()
+                optimizer.zero_grad()
 
                 # Estimate the logarithm of the propabilities (Check the output layer of the classifer)
                 log_props = model.forward(images)
