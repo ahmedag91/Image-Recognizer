@@ -19,7 +19,7 @@ class Network(nn.Module):
 
         # add the hidden and layers
         self.hidden_layers = nn.ModuleList([])
-        self.hidden_layers.extend([nn.Linear(hidden_layers[i], hidden_layers[i+1]) for i in range(len(l)-1)])
+        self.hidden_layers.extend([nn.Linear(l[i], l[i+1]) for i in range(len(l)-1)])
         self.dropout = nn.Dropout(dropout)
 
         def forward(self, network_input):
