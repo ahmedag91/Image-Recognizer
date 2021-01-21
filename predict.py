@@ -18,4 +18,6 @@ parser.add_argument('--gpu', action = 'store_true', help = 'Specifiy whether you
 
 parser.add_argument('--category_names', metavar = '', type = str, default = 'cat_to_name.json', help = 'Specify the json file that maps category number to the class name.')
 
+parser.add_argument('--input', metavar = '', type = str, default = './flowers/test/5/image_05159.jpg', help = 'Specify the path to an image with its name and extension.')
+
 args = parser.parse_args()
