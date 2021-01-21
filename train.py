@@ -22,4 +22,4 @@ parser.add_argument('--Epochs',  metavar= '', type = int, defauls = 10, help ='T
 # Take the device type you wish to train your model on
 parser.add_argument('--gpu', action = 'store_true', help = 'Specifiy whether you want to train your model on a CPU or a GPU by just writing --gpu. It chooses the GPU by default if it is available')
 
-parser.parse_args()
+args = parser.parse_args()
