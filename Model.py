@@ -39,7 +39,7 @@ def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device =
     optimizer = optim.SGD(model.classifier.parameters(), lr=lr, momentum=0.9)
     criterion = nn.NLLLoss()
 
-    if torch.cuda.is_available() and device == 'cuda':
+    if torch.cuda.is_available() and device:
         device = torch.device('cuda')
     else:
         device = torch.device('cpu')
