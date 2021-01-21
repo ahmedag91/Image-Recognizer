@@ -31,7 +31,11 @@ parser.add_argument('--epochs',  metavar= '', type = int, default = 1, help ='Th
 # Take the device type you wish to train your model on
 parser.add_argument('--gpu', action = 'store_true', help = 'Specifiy whether you want to train your model on a CPU or a GPU by just writing --gpu. It chooses the GPU by default if it is available')
 
+# Specify the dropout rate
 parser.add_argument('--dropout', metavar = '', type = float, default = 0.2, help = 'Specify the dropout rate that will be used for the fully connected layers, which you will specify their dimensions. The default value is 0.2')
+
+#
+parser.add_argument('--save_checkpoint', metavar = '', type = str, default = './', help = 'Specify the dicrectory in which you wish to save your trained model parameters')
 
 args = parser.parse_args()
 
@@ -71,6 +75,12 @@ print('{} is in use.'.format(device))
 trained_model = Model.train_model(model = model, 
                             train_data = train_data, 
                             valid_data = valid_data, 
-                            epochs = args.epochs, ## TODO: make it args.epoch later
+                            epochs = args.epochs,
                             lr = args.learning_rate, 
                             device = device)
+# 
+trained_model.class_to_idx = train_data.class_to_idx
+params_dict = {'model_state_dict': trained_model.state_dict(),
+              'model': trained_model
+             }
+torch.save(params_dict, 'my_model.pth')
