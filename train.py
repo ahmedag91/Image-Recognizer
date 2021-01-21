@@ -26,7 +26,7 @@ parser.add_argument('--arch', metavar = '', type = str, default = 'vgg16', help 
 parser.add_argument('--hidden_layers', metavar = '', type = int, nargs = '+', default = [4096], help = 'Specify the dimensions of the hidden layers as list. The default has only a single element with 4096 neurons')
 
 # Take the number of epochs as inputs
-parser.add_argument('--epochs',  metavar= '', type = int, default = 10, help ='The number of training epochs the default value is 10')
+parser.add_argument('--epochs',  metavar= '', type = int, default = 1, help ='The number of training epochs the default value is 10')
 
 # Take the device type you wish to train your model on
 parser.add_argument('--gpu', action = 'store_true', help = 'Specifiy whether you want to train your model on a CPU or a GPU by just writing --gpu. It chooses the GPU by default if it is available')
@@ -73,9 +73,9 @@ if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
 else:
     device = torch.device('cpu')
-trained_model = Model.train(model = model, 
+trained_model = Model.train_model(model = model, 
                             train_data = train_data, 
                             valid_data = valid_data, 
-                            epochs = 1, 
+                            epochs = args.epochs, ## TODO: make it args.epoch later
                             lr = args.learning_rate, 
                             device = device)
