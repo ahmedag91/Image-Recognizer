@@ -103,7 +103,7 @@ def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device =
                     validation_loss += criterion(log_props, labels).item()
 
                     # Compute the propabilities
-                    props = torch.exp(log_props, dim = 1)
+                    props = torch.exp(log_props)
 
                     # Compute the top classes corresponding to the top propabilities
                     _, top_classes = props.topk(1, dim = 1)
