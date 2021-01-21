@@ -58,7 +58,10 @@ else:
 print('Here is the model architecture')
 print(loaded_model)
 
-# 
-model = Model.Network(hidden_layers=args.hidden_layers)
+# Define the fully connected (classifier) model and print it
+model = Model.Network(hidden_layers=args.hidden_layers, dropout=args.dropout)
+print(model)
 
+# Remove the classifier of the loaded network, freeze its conv layers, and add the new classifier defined above
+model = Model.Extend(loaded_model, model)
 print(model)
