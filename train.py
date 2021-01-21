@@ -14,7 +14,7 @@ parser.add_argument('--save_dir', metavar = '', type = str, default='my_model.pt
 parser.add_argument('--learning_rate', metavar = '', type = float, default = 0.005, help = 'Specify the learning rate of the SGD optimizer that will be used')
 
 # Take the model name architecture for more information about these architectures visit pytorch.org
-parser.add_argument('--arch', metavar = '', type = str, default = 'vgg16', help = 'Specify the neural network architecture that will be used. Choose either vgg13, vgg16, or alexnet. The default is vgg16')
+parser.add_argument('--arch', metavar = '', type = str, default = 'vgg16', help = "Specify the neural network architecture that will be used. Choose either 'vgg13', 'vgg16', or 'alexnet'. The default is vgg16")
 
 # Take the hidden layer dimensions as inputs
 parser.add_argument('--hidden_layers', metavar = '', type = int, nargs = '+', default = [4096], help = 'Specify the dimensions of the hidden layers as list. The default has only a single element with 4096 neurons')
