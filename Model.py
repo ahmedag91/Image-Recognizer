@@ -6,16 +6,21 @@ import time
 class Network(nn.Module):
     
 
-    def __init__(self, input_dims = 25088, hidden_layers = [4096, 1000], output_dims = 102, dropout = 0.2):
+    def __init__(self, input_dims = 25088, hidden_layers = [4096], output_dims = 102, dropout = 0.2):
         super().__init__()
         
-        #define a list of hidden layers, and add the first layer
-        self.hidden_layers = nn.ModuleList([nn.Linear(input_dims, hidden_layers[0])])
 
-        # add the hidden layers
-        self.hidden_layers.extend([nn.Linear(hidden_layers[i], hidden_layers[i+1]) for i in range(len(hidden_layers)-1)])
+        # define an empy_list
+        l = [input_dims]
+        for dim in hidden_layers:
+            l.append(dim)
+        l.append(output_dims)
+
+
+        # add the hidden and layers
+        self.hidden_layers = nn.ModuleList([])
+        self.hidden_layers.extend([nn.Linear(hidden_layers[i], hidden_layers[i+1]) for i in range(len(l)-1)])
         self.dropout = nn.Dropout(dropout)
-        self.output = nn.Linear(hidden_layers[-1], output_dims)
 
         def forward(self, network_input):
 
@@ -24,8 +29,6 @@ class Network(nn.Module):
                 network_input = nn.ReLU(network_input)
                 network_input = self.dropout(network_input)
             
-            # Compute the output
-            network_input = self.output(network_input)
             return nn.LogSoftmax(network_input)
 def Extend(model1, model2):
     
