@@ -60,8 +60,22 @@ print(loaded_model)
 
 # Define the fully connected (classifier) model and print it
 model = Model.Network(hidden_layers=args.hidden_layers, dropout=args.dropout)
+print('Here is the model to be attached')
 print(model)
 
 # Remove the classifier of the loaded network, freeze its conv layers, and add the new classifier defined above
 model = Model.Extend(loaded_model, model)
+print('Here is the new model')
 print(model)
+
+#Now it is time for training the new model
+if torch.cuda.is_available() and args.gpu:
+    device = torch.device('cuda')
+else:
+    device = torch.device('cpu')
+trained_model = Model.train(model = model, 
+                            train_data = train_data, 
+                            valid_data = valid_data, 
+                            epochs = 1, 
+                            lr = args.learning_rate, 
+                            device = device)
