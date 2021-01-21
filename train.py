@@ -1,5 +1,5 @@
 import argparse
-import numpy as np
+
 parser = argparse.ArgumentParser(
     description='This for training a network you choose.\n First, you need an existing available architecture to load such as VGG16 or VGG13, etc.\n Some layer will be freezed, whereas the last layers are dropped and replaced by hidden layers from your choice.'
 )
@@ -21,5 +21,7 @@ parser.add_argument('--Epochs',  metavar= '', type = int, defauls = 10, help ='T
 
 # Take the device type you wish to train your model on
 parser.add_argument('--gpu', action = 'store_true', help = 'Specifiy whether you want to train your model on a CPU or a GPU by just writing --gpu. It chooses the GPU by default if it is available')
+
+parser.add_argument('--dropout', metavar = '', type = float, default = 0.2, help = 'Specify the dropout rate that will be used for the fully connected layers, which you will specify their dimensions. The default value is 0.2')
 
 args = parser.parse_args()
