@@ -30,7 +30,7 @@ class Network(nn.Module):
             network_input = self.activation(network_input)
             network_input = self.dropout(network_input)
         network_input = self.hidden_layers(network_input)
-        return nn.LogSoftmax(network_input)
+        return nn.LogSoftmax(network_input, dim = 1)
 def Extend(model1, model2):
     
     for layer in model1.parameters():
