@@ -39,14 +39,10 @@ def Extend(model1, model2):
 
     return model1
 
-def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device = 'cuda'):
+def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device = torch.device('cpu')):
     optimizer = optim.SGD(model.classifier.parameters(), lr=lr, momentum=0.9)
     criterion = nn.NLLLoss()
 
-    if torch.cuda.is_available() and device:
-        device = torch.device('cuda')
-    else:
-        device = torch.device('cpu')
     with active_session():
         for e in range(epochs):
             
