@@ -10,7 +10,7 @@ class Network(nn.Module):
         super().__init__()
         
         #define a list of hidden layers, and add the first layer
-        self.hidden_layers = nn.ModuleList([nn.Linear(input, hidden_layers[0])])
+        self.hidden_layers = nn.ModuleList([nn.Linear(input_dims, hidden_layers[0])])
 
         # add the hidden layers
         self.hidden_layers.extend([nn.Linear(hidden_layers[i], hidden_layers[i+1]) for i in range(len(hidden_layers)-1)])
