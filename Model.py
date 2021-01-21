@@ -23,14 +23,14 @@ class Network(nn.Module):
         self.dropout = nn.Dropout(dropout)
         self.activation = nn.ReLU()
         print(len(self.hidden_layers))
-        def forward(self, network_input):
+    def forward(self, network_input):
 
-            for layer in self.hidden_layers[:-1]:
-                network_input = layer(network_input)
-                network_input = self.activation(network_input)
-                network_input = self.dropout(network_input)
-            network_input = hidden_layers(network_input)
-            return nn.LogSoftmax(network_input)
+        for layer in self.hidden_layers[:-1]:
+            network_input = layer(network_input)
+            network_input = self.activation(network_input)
+            network_input = self.dropout(network_input)
+        network_input = hidden_layers(network_input)
+        return nn.LogSoftmax(network_input)
 def Extend(model1, model2):
     
     for layer in model1.parameters():
