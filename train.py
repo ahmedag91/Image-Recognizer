@@ -39,7 +39,7 @@ parser.add_argument('--dropout', metavar = '', type = float, default = 0.2, help
 args = parser.parse_args()
 
 # Load the training and validation datasets
-train_data, valid_data, _ = data_loader.load_image_dataset(args.data_dir)
+(train_images, _, _), (train_data, valid_data, _) = data_loader.load_image_dataset(args.data_dir)
 
 # Load the model architecture based on the inputs. If 
 if args.arch =='vgg16':
