@@ -23,7 +23,7 @@ The rest of the project is divided into the following Python files:
 - [`data_loader.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/data_loader.py): This file has some implemented functions, which responsible for loading and preprocesing either a whole dataset or a single image with ``.jpg`` format.
 - [`train.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/train.py): This a module is runnable by a command line prompt. It takes arguments from the user. These arguments are required to apply transfer learning for a given neural network and saves the newly trained architecture. To check what these arguments are and what kind of inputs they take, run the following command:
 
-```
+```cli
 python train.py --help
 ```
 
