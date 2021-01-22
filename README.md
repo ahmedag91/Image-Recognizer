@@ -25,11 +25,10 @@ The rest of the project is divided into the following Python files:
 - [`predict.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/predict.py)
 - [`workspace_utils.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/workspace_utils.py): This one prevent prevents the session from being shutdown. This file is recommended to use if a cloud platform with time out is employed. It is recommended to use it during a long training time. It can be used by writing the following
 
-<p align="center">
-  ```bash
+{  ```bash
   with active_session():
       write some code here
   ```
-</p>
+}
 
 
