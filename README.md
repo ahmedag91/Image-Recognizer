@@ -34,7 +34,7 @@ python train.py --data_dir 'flowers' --arch 'vgg16' --hidden_layers 4096 1000 --
 ```
 
 - [`predict.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/predict.py)
-- [`workspace_utils.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/workspace_utils.py): This one prevent prevents the session from being shutdown. This file is recommended to use if a cloud platform with time out is employed. It is recommended to use it during a long training time. An example of using it can be found at [`Image Classifier Project.ipynb`](https://github.com/ahmedag91/Image-Recognizer/blob/main/Image%20Classifier%20Project.ipynb) notebook.
+- [`workspace_utils.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/workspace_utils.py): This one prevent prevents the session from being shutdown. This file is recommended to use if a cloud platform with time out is employed. Also, it is recommended to use during a long training time on the cloud. An example of using it can be found at [`Image Classifier Project.ipynb`](https://github.com/ahmedag91/Image-Recognizer/blob/main/Image%20Classifier%20Project.ipynb) notebook.
 
 
 
