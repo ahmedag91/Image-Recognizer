@@ -23,19 +23,15 @@ The rest of the project is divided into the following Python files:
 - [`data_loader.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/data_loader.py): This file has some implemented functions, which responsible for loading and preprocesing either a whole dataset or a single image with ``.jpg`` format.
 - [`train.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/train.py): This a module is runnable by a command line prompt. It takes arguments from the user. These arguments are required to apply transfer learning for a given neural network and saves the newly trained architecture. To check what these arguments are and what kind of inputs they take, run the following command:
 
-```cli
+```sh
 python train.py --help
 ```
 
 An example of running the file from the command line and give all the required arguments is as follows
 
-```
+```sh
 python train.py --data_dir 'flowers' --arch 'vgg16' --hidden_layers 4096 1000 --epochs 10 --gpu --save_dir './'
 ```
 
 - [`predict.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/predict.py)
 - [`workspace_utils.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/workspace_utils.py): This one prevent prevents the session from being shutdown. This file is recommended to use if a cloud platform with time out is employed. Also, it is recommended to use during a long training time on the cloud. An example of using it can be found at [`Image Classifier Project.ipynb`](https://github.com/ahmedag91/Image-Recognizer/blob/main/Image%20Classifier%20Project.ipynb) notebook.
-
-
-
-
