@@ -6,7 +6,7 @@ from PIL import Image as im
 def load_image_dataset(dataset_dir: str):
     """
     This function takes a path to the root directory of a the dataset as a string variable. This directory should has three subfolders
-    train, test, and valid folder. It returns a tuple of the train, valid, and test datasets.
+    train, test, and valid folder. It normalize the data, applies some randomized cropping for the images. Finally it converts them into tensors as PyTorch needs the data to be like this. It returns two tuples. One contains train, valid, and test datasets, whereas the other one contains ImageFolders corresponding to the train, valid, and test datasets.
     Arguments:
     ----------
     dataset_dir: an input string
