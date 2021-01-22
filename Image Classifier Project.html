@@ -13153,7 +13153,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Imports here</span>
@@ -13757,10 +13757,11 @@ Epoch 10/10 === Training loss: 0.790 === Validation loss: 0.849 === Validation a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Save the checkpoint </span>
+
 <span class="n">model</span><span class="o">.</span><span class="n">class_to_idx</span> <span class="o">=</span> <span class="n">image_datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">class_to_idx</span>
 <span class="n">params_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Optimizer_state_dict&#39;</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
               <span class="s1">&#39;Optimizer&#39;</span><span class="p">:</span> <span class="n">optimizer</span><span class="p">,</span> 
@@ -13772,33 +13773,6 @@ Epoch 10/10 === Training loss: 0.790 === Validation loss: 0.849 === Validation a
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-1-d27a8e822b7d&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># TODO: Save the checkpoint</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>model<span class="ansi-blue-fg">.</span>class_to_idx <span class="ansi-blue-fg">=</span> image_datasets<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;train&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>class_to_idx
-<span class="ansi-green-intense-fg ansi-bold">      3</span> params_dict = {&#39;Optimizer_state_dict&#39;: optimizer.state_dict(),
-<span class="ansi-green-intense-fg ansi-bold">      4</span>               <span class="ansi-blue-fg">&#39;Optimizer&#39;</span><span class="ansi-blue-fg">:</span> optimizer<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>               <span class="ansi-blue-fg">&#39;model_state_dict&#39;</span><span class="ansi-blue-fg">:</span> model<span class="ansi-blue-fg">.</span>state_dict<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;image_datasets&#39; is not defined</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -14206,6 +14180,42 @@ Epoch 10/10 === Training loss: 0.790 === Validation loss: 0.849 === Validation a
 Pytorch version: 0.4.0
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!!</span>jupyter nbconvert *.ipynb
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;[NbConvertApp] Converting notebook Image Classifier Project.ipynb to html&#39;,
+ &#39;[NbConvertApp] Writing 682930 bytes to Image Classifier Project.html&#39;,
+ &#39;[NbConvertApp] Converting notebook Image Classifier Project-zh.ipynb to html&#39;,
+ &#39;[NbConvertApp] Writing 295106 bytes to Image Classifier Project-zh.html&#39;]</pre>
+</div>
+
 </div>
 
 </div>
