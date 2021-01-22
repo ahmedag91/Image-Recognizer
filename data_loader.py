@@ -25,7 +25,7 @@ def load_image_dataset(dataset_dir: str):
         image_data.append(datasets.ImageFolder(dir, transform=data_transforms))
         dataset.append(torch.utils.data.DataLoader(datasets.ImageFolder(dir, transform=data_transforms), batch_size=64, shuffle=True))
         
-    return (images for images in image_data), (data for data in dataset) 
+    return ((images for images in image_data), (data for data in dataset))
 
 def load_image(im_path:str):
     """
