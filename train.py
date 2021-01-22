@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('--data_dir', metavar = '', type = str, default='flowers', help = 'Specify the root directory of the dataset')
 
 #Taking the dataset directory as input from the user
-parser.add_argument('--save_dir', metavar = '', type = str, default='my_model.pth', help = 'Specify the root directory including the file name with .pth extension')
+parser.add_argument('--save_dir', metavar = '', type = str, default='./', help = 'Specify the root directory including the file name with .pth extension')
 
 # Taking the learning rate from the user as float variable from the user
 parser.add_argument('--learning_rate', metavar = '', type = float, default = 0.005, help = 'Specify the learning rate of the SGD optimizer that will be used')
@@ -34,8 +34,7 @@ parser.add_argument('--gpu', action = 'store_true', help = 'Specifiy whether you
 # Specify the dropout rate
 parser.add_argument('--dropout', metavar = '', type = float, default = 0.2, help = 'Specify the dropout rate that will be used for the fully connected layers, which you will specify their dimensions. The default value is 0.2')
 
-#
-parser.add_argument('--save_checkpoint', metavar = '', type = str, default = './', help = 'Specify the dicrectory in which you wish to save your trained model parameters')
+#parser.add_argument('--save_checkpoint', metavar = '', type = str, default = './', help = 'Specify the dicrectory in which you wish to save your trained model parameters')
 
 args = parser.parse_args()
 
@@ -83,4 +82,4 @@ trained_model.class_to_idx = train_data.class_to_idx
 params_dict = {'model_state_dict': trained_model.state_dict(),
               'model': trained_model
              }
-torch.save(params_dict, args.save_checkpoint+'my_model.pth')
+torch.save(params_dict, args.save_dir+'my_model.pth')
