@@ -30,7 +30,7 @@ python train.py --help
 An example of running the file from the command line and give all the required arguments is as follows
 
 ```
-python train.py --data_dir 'flowers' --arch 'vgg16' --hidden_layers 4096 1000 --epochs 10 --gpu --save_checkpoint ./my_model.pth
+python train.py --data_dir 'flowers' --arch 'vgg16' --hidden_layers 4096 1000 --epochs 10 --gpu --save_dir './'
 ```
 
 - [`predict.py`](https://github.com/ahmedag91/Image-Recognizer/blob/main/predict.py)
