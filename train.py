@@ -66,6 +66,7 @@ print('Here is the new model\n', model)
 #Now it is time for training the new model
 if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
+    torch.cuda.manual_seed_all(42)
     model.cuda()
 else:
     device = torch.device('cpu')
