@@ -7,3 +7,4 @@ This is a project code for a transfer learning project. In this project, image c
 - [Pillow](https://pillow.readthedocs.io/en/stable/installation.html)
 - [NumPy](https://numpy.org/)
 - [matplotlib](https://matplotlib.org/)
+- [Jupyter](https://jupyter.org/install)
