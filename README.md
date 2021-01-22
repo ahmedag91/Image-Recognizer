@@ -1,5 +1,5 @@
 # Transfer Learning for Image Classification Using [PyTorch](https://pytorch.org/get-started/locally/)
-This is a project code for a transfer learning project. In this project, image classifier is built with [PyTorch](https://pytorch.org/get-started/locally/) by applying the concept of transfer learning. This library deals with an image dataset with 102 classes. The library assumes that the dataset main folder has three subfolder train, valid, and test folders. Each folder contains 102 subfolder where each one has some images in `.jpg` format.
+This is a project code for a transfer learning project. In this project, image classifier is built with [PyTorch](https://pytorch.org/get-started/locally/) by applying the concept of transfer learning. This library deals with an image dataset with 102 classes. The library assumes that the dataset main folder has three subfolders train, valid, and test folders. Each folder contains 102 subfolder where each one has some images in `.jpg` format.
 
 ## Used Libraries 
 Please check which of these require installation to run the library. Check also the documentation in case that you need.
