@@ -19,11 +19,13 @@ def load_image_dataset(dataset_dir: str):
                                         transforms.ToTensor(),
                                         transforms.Normalize(mean_per_channel, std_per_channel)
                                     ])
-    data_set = []
+    dataset = []
+    image_data = []
     for dir in dataset_dirs:
-        data_set.append(torch.utils.data.DataLoader(datasets.ImageFolder(dir, transform=data_transforms), batch_size=64, shuffle=True))
+        image_data.append(datasets.ImageFolder(dir, transform=data_transforms))
+        dataset.append(torch.utils.data.DataLoader(datasets.ImageFolder(dir, transform=data_transforms), batch_size=64, shuffle=True))
         
-    return (data for data in data_set) 
+    return (images for images in image_data), (data for data in dataset) 
 
 def load_image(im_path:str):
     """
