@@ -3,6 +3,7 @@ import Model
 import data_loader
 import torch
 import json
+import numpy as np
 parser = argparse.ArgumentParser(
     description='This for loading and testing a pretrained and saved network.'
 )
@@ -37,12 +38,15 @@ tensor_image = torch.from_numpy(data_loader.process_image(image))
 if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
     torch.cuda.manual_seed_all(42)
-    model.cuda()
-    tensor_image.cuda()
+    model.cuda().double()
+    tensor_image.cuda().double()
 else:
     device = torch.device('cpu')
-    model.cpu()
-    tensor_image.cpu()
+    model.cpu().double()
+    tensor_image.cpu().double()
 print('{} is in use.'.format(device))
 
-top_classes, top_props = Model.predict(tensor_image, model, topk=args.top_k, device = device)
+top_props, top_classes = Model.predict(tensor_image, model, topk=args.top_k, device = device)
+print('Here are the top propabilities:\n{}'.format(top_props))
+print('Here are the top classes:\n{}'.format(top_classes))
+print('The corresponding class names:\n{}'.format(np.array([cat_to_name[top_class] for top_class in top_classes])))
