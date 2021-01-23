@@ -2,7 +2,7 @@ import torch
 from torch import nn, optim
 from workspace_utils import active_session
 import time
-
+import numpy as np
 class Network(nn.Module):
     
 
@@ -128,3 +128,38 @@ def load_checkpoint(file_path: str):
     model = model_dict['model']
     model.load_state_dict(model_dict['model_state_dict'])
     return model
+
+def predict(tensor_image, model, topk=5, device):
+    ''' Predict the class (or classes) of an image using a trained deep learning model.
+    '''
+    # Convert the tensor into a batch of one tensor this tensor has dimensions of [1, 3, 224, 224]
+    one_batch_tensor = torch.unsqueeze(tensor_image, 0)
+    one_batch_tensor.to(device)
+    
+    
+    #model = model.double()
+    # Make the model in the evaluation mode
+    model.eval()
+    with torch.no_grad():
+
+        # Move the model and the image to the device
+        model.to(device)
+        one_batch_tensor.to(device)
+        
+        # Estimate the logarithm of the propabilities (Check the criterion above)
+        log_props = model.forward(one_batch_tensor)
+
+        # Compute the propabilities
+        props = torch.exp(log_props)
+
+        # Compute the top probablity
+        top_props, top_class = props.topk(topk)
+  
+    #convert class to index dictionary to an index to class one
+    idx_to_class = {value: key for key, value in model.class_to_idx.items()}
+    
+    return top_props.numpy().squeeze(), np.array([
+                                            value 
+                                            for key, value in idx_to_class.items() 
+                                            if key in top_class.numpy()
+                                        ])
