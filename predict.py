@@ -39,8 +39,12 @@ if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
 else:
     device = torch.device('cpu')
+
+# Convert the model weights and the data to float types as it is faster that doubles
 model = model.float()
 tensor_image = tensor_image.float()
+
+# Move the model and the data to the chosen device
 model.to(device)
 tensor_image = tensor_image.to(device)
 print('{} is in use.'.format(device))
