@@ -31,19 +31,16 @@ model = Model.load_checkpoint(args.load_checkpoint)
 image = data_loader.load_image(args.input)
 
 # Convert is to tensor
-tensor_image = torch.from_numpy(data_loader.process_image(image))
+tensor_image = torch.from_numpy(data_loader.process_image(image)).float()
 
 
 # Check whether to use GPU or CPU
 if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
-    torch.cuda.manual_seed_all(42)
-    model.cuda().double()
-    tensor_image.cuda().double()
 else:
     device = torch.device('cpu')
-    model.cpu().double()
-    tensor_image.cpu().double()
+#model = model.float()
+#tensor_image = tensor_image.float()
 print('{} is in use.'.format(device))
 
 top_props, top_classes = Model.predict(tensor_image, model, topk=args.top_k, device = device)
