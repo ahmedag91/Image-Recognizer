@@ -155,13 +155,14 @@ def predict(tensor_image, model, topk, device):
         props = torch.exp(log_props)
 
         # Compute the top probablity
-        top_props, top_class = props.topk(topk)
-  
-    #convert class to index dictionary to an index to class one
-    idx_to_class = {value: key for key, value in model.class_to_idx.items()}
+        top_props, top_idxs = props.topk(topk)
+
+        # Convert class_to_idx to idx_to_class
+        idx_to_class = {value: key for key, value in model.class_to_idx.items()}
     
-    return top_props.cpu().numpy().squeeze(), np.array([
-                                            value 
-                                            for key, value in idx_to_class.items() 
-                                            if key in top_class.cpu().numpy()
-                                        ])
+    return (top_props.cpu().numpy().squeeze(), 
+            np.array([
+                idx_to_class[top_idx] 
+                for top_idx in top_idxs.cpu().numpy().reshape(-1)
+                    ])
+                )
