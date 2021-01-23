@@ -1,12 +1,10 @@
 import argparse
-
-import torchvision
-from torchvision.models.alexnet import alexnet
 import Model
 import data_loader
 import torch
 import torchvision
 import json
+import model
 parser = argparse.ArgumentParser(
     description='This for loading and testing a pretrained and saved network.'
 )
@@ -28,3 +26,23 @@ with open(args.category_names, 'r') as f:
     cat_to_name = json.load(f)
 
 # Load the saved model
+model = Model.load_checkpoint(args.load_checkpoint)
+
+# Load the Image
+image = data_loader.load_image(args.image_path)
+
+# Convert is to tensor
+image_tensor = torch.from_numpy()
+
+
+
+if torch.cuda.is_available() and args.gpu:
+    device = torch.device('cuda')
+    torch.cuda.manual_seed_all(42)
+    model.cuda()
+    image_tensor.cuda()
+else:
+    device = torch.device('cpu')
+    model.cpu()
+    image_tensor.cpu()
+print('{} is in use.'.format(device))
