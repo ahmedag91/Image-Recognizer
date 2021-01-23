@@ -80,6 +80,7 @@ trained_model = Model.train_model(model = model,
                             device = device)
 # 
 trained_model.class_to_idx = train_images.class_to_idx
+trained_model.to(torch.device('cpu'))
 params_dict = {'model_state_dict': trained_model.state_dict(),
               'model': trained_model
              }
