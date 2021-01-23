@@ -129,7 +129,7 @@ def load_checkpoint(file_path: str):
     model.load_state_dict(model_dict['model_state_dict'])
     return model
 
-def predict(tensor_image, model, topk=5, device):
+def predict(tensor_image, model, topk, device):
     ''' Predict the class (or classes) of an image using a trained deep learning model.
     '''
     # Convert the tensor into a batch of one tensor this tensor has dimensions of [1, 3, 224, 224]

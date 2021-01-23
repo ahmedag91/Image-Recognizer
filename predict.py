@@ -47,4 +47,4 @@ else:
     tensor_image.cpu()
 print('{} is in use.'.format(device))
 
-top_classes, top_props = Model.predict(tensor_image, model, topk=args.top_k, device)
+top_classes, top_props = Model.predict(tensor_image, model, topk=args.top_k, device = device)
