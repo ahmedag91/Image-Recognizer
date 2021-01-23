@@ -2,9 +2,7 @@ import argparse
 import Model
 import data_loader
 import torch
-import torchvision
 import json
-import model
 parser = argparse.ArgumentParser(
     description='This for loading and testing a pretrained and saved network.'
 )
