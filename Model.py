@@ -124,8 +124,7 @@ def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device =
                 'Time consumed: {:.0f} seconds'.format(end-start))
     return model
 def load_checkpoint(file_path: str):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model_dict = torch.load('My_VGG16.pth', map_location = 'cpu')
+    model_dict = torch.load(file_path)
     model = model_dict['model']
     model.load_state_dict(model_dict['model_state_dict'])
     return model
