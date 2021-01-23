@@ -122,10 +122,10 @@ def train_model(model, train_data, valid_data, epochs = 10, lr = 0.005, device =
                 "Validation loss: {:.3f} ===".format(validation_loss/len(valid_data)), 
                 "Validation accuracy: {:.3f}% ===".format(validation_accuracy*100/len(valid_data)),
                 'Time consumed: {:.0f} seconds'.format(end-start))
-
-
-
-
-
-
+    return model
+def load_checkpoint(file_path: str):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model_dict = torch.load('My_VGG16.pth', map_location = 'cpu')
+    model = model_dict['model']
+    model.load_state_dict(model_dict['model_state_dict'])
     return model
