@@ -134,17 +134,19 @@ def predict(tensor_image, model, topk, device):
     '''
     # Convert the tensor into a batch of one tensor this tensor has dimensions of [1, 3, 224, 224]
     one_batch_tensor = torch.unsqueeze(tensor_image, 0)
-    one_batch_tensor.to(device)
+    #one_batch_tensor.to(device)
     
     
     #model = model.double()
     # Make the model in the evaluation mode
     model.eval()
+    
+    # Move the model and the image to the device
+    model = model.to(device)
+    one_batch_tensor = one_batch_tensor.to(device)
     with torch.no_grad():
 
-        # Move the model and the image to the device
-        model.to(device)
-        one_batch_tensor.to(device)
+        
         
         # Estimate the logarithm of the propabilities (Check the criterion above)
         log_props = model.forward(one_batch_tensor)
@@ -158,8 +160,8 @@ def predict(tensor_image, model, topk, device):
     #convert class to index dictionary to an index to class one
     idx_to_class = {value: key for key, value in model.class_to_idx.items()}
     
-    return top_props.numpy().squeeze(), np.array([
+    return top_props.cpu().numpy().squeeze(), np.array([
                                             value 
                                             for key, value in idx_to_class.items() 
-                                            if key in top_class.numpy()
+                                            if key in top_class.cpu().numpy()
                                         ])
