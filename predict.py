@@ -41,6 +41,8 @@ else:
     device = torch.device('cpu')
 model = model.float()
 tensor_image = tensor_image.float()
+model.to(device)
+tensor_image = tensor_image.to(device)
 print('{} is in use.'.format(device))
 
 top_props, top_classes = Model.predict(tensor_image, model, topk=args.top_k, device = device)
