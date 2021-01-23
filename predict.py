@@ -39,8 +39,8 @@ if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
 else:
     device = torch.device('cpu')
-#model = model.float()
-#tensor_image = tensor_image.float()
+model = model.float()
+tensor_image = tensor_image.float()
 print('{} is in use.'.format(device))
 
 top_props, top_classes = Model.predict(tensor_image, model, topk=args.top_k, device = device)
