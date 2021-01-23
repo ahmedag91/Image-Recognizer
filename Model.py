@@ -130,8 +130,17 @@ def load_checkpoint(file_path: str):
     return model
 
 def predict(tensor_image, model, topk, device):
-    ''' Predict the class (or classes) of an image using a trained deep learning model.
-    '''
+    """
+    This function classifies a given image using a trained neural network
+    Args:
+        tensor_image: an RGB image with three channels casted to a batch of a single tensor
+        model: a trained neural network
+        topk: the most k propable classes you wish to return
+        device: it can be either torch.device('cpu') or torch.device('gpu')
+    Returns
+    top_props: a numpy array that contains the top k probabilities
+    top_classes: a numpy array that contains the top k classes
+    """
     # Convert the tensor into a batch of one tensor this tensor has dimensions of [1, 3, 224, 224]
     one_batch_tensor = torch.unsqueeze(tensor_image, 0)
     #one_batch_tensor.to(device)
@@ -159,10 +168,10 @@ def predict(tensor_image, model, topk, device):
 
         # Convert class_to_idx to idx_to_class
         idx_to_class = {value: key for key, value in model.class_to_idx.items()}
-    
-    return (top_props.cpu().numpy().squeeze(), 
-            np.array([
-                idx_to_class[top_idx] 
-                for top_idx in top_idxs.cpu().numpy().reshape(-1)
-                    ])
-                )
+        top_classes = np.array([
+                                idx_to_class[top_idx] 
+                                for top_idx in top_idxs.cpu().numpy().reshape(-1)
+                                ])
+                
+    return (top_props.cpu().numpy().squeeze(), top_classes)
+            
