@@ -29,20 +29,22 @@ with open(args.category_names, 'r') as f:
 model = Model.load_checkpoint(args.load_checkpoint)
 
 # Load the Image
-image = data_loader.load_image(args.image_path)
+image = data_loader.load_image(args.input)
 
 # Convert is to tensor
-image_tensor = torch.from_numpy()
+tensor_image = torch.from_numpy(data_loader.process_image(image))
 
 
-
+# Check whether to use GPU or CPU
 if torch.cuda.is_available() and args.gpu:
     device = torch.device('cuda')
     torch.cuda.manual_seed_all(42)
     model.cuda()
-    image_tensor.cuda()
+    tensor_image.cuda()
 else:
     device = torch.device('cpu')
     model.cpu()
-    image_tensor.cpu()
+    tensor_image.cpu()
 print('{} is in use.'.format(device))
+
+top_classes, top_props = Model.predict(tensor_image, model, topk=args.top_k, device)
