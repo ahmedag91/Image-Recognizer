@@ -62,7 +62,7 @@ def process_image(image:im):
     image_cropped = image_resized.crop(cropping)
     
     # Convert to np
-    np_image = np.array(image_cropped, dtype = np.double)
+    np_image = np.array(image_cropped, dtype = np.float)
 
     # then crop the image
     means = [0.485, 0.456, 0.406]
