@@ -41,6 +41,9 @@ args = parser.parse_args()
 # Load the training and validation datasets
 (train_images, _, _), (train_data, valid_data, _) = data_loader.load_image_dataset(args.data_dir)
 
+# Load one batch the training data as it will help later for knowing the output of the convolution layers
+batch_images, _ = next(iter(train_data))
+
 # Load the model architecture based on the inputs. If 
 if args.arch =='vgg16':
     loaded_model = torchvision.models.vgg16(pretrained=True)
@@ -55,8 +58,11 @@ else:
 # Display the model architecture
 print('Here is the model architecture', loaded_model)
 
+# Define the input_dims
+features_out = loaded_model.features(batch_images).view(batch_images.shape(0), -1).shape[-1]
+
 # Define the fully connected (classifier) model and print it
-model = Model.Network(hidden_layers=args.hidden_layers, dropout=args.dropout)
+model = Model.Network(input_dims = features_out, hidden_layers=args.hidden_layers, dropout=args.dropout)
 print('Here is the model to be attached\n', model)
 
 # Remove the classifier of the loaded network, freeze its conv layers, and add the new classifier defined above
