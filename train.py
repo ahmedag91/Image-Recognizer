@@ -59,7 +59,7 @@ else:
 print('Here is the model architecture', loaded_model)
 
 # Define the input_dims
-features_out = loaded_model.features(batch_images).view(batch_images.shape(0), -1).shape[-1]
+features_out = loaded_model.features(batch_images).view(batch_images.shape[0], -1).shape[-1]
 
 # Define the fully connected (classifier) model and print it
 model = Model.Network(input_dims = features_out, hidden_layers=args.hidden_layers, dropout=args.dropout)
